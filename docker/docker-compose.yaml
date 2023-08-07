@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mymongo_user
+      MONGO_INITDB_ROOT_PASSWORD: mymongo_password
+    volumes:
+      - mongodb_data:/data/db
+    expose:
+      - "27017"
+    networks:
+      - backend-network
+    restart: always
+
+  backend:
+    build: 
+      context: ../backend
+      dockerfile: Dockerfile
+    environment:
+      DB_URL: mongodb://mymongo_user:mymongo_password@mongodb:27017/mydb
+    expose:
+      - "5000"
+    networks:
+      - backend-network
+    restart: always
+
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    networks:
+      - backend-network
+    restart: always
+
+  mongo_backup:
+    image: mongo
+    command: /bin/bash -c 'while true; do mongodump --uri=mongodb://mymongo_user:mymongo_password@mongodb:27017/db -o /backup && sleep 86400; done'
+    volumes:
+      - mongodb_backup:/backup
+    networks:
+      - backend-network
+    restart: always
+
+networks:
+  backend-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+  mongodb_backup:

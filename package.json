@@ -1,0 +1,39 @@
+{
+  "name": "interview_task",
+  "version": "1.0.0",
+  "description": "Interview task for aldar group selection process",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./backend/src/app"
+  },
+  "keywords": [
+    "Interview",
+    "Task"
+  ],
+  "author": "Balasubramanyam",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "body-parser": "^1.20.2",
+    "bootstrap": "^5.3.1",
+    "celebrate": "^15.0.1",
+    "connect-busboy": "^1.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^6.9.0",
+    "helmet": "^7.0.0",
+    "mongoose": "^7.4.2",
+    "mongoose-gridfs": "^1.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.14.2",
+    "winston": "^3.10.0",
+    "winston-daily-rotate-file": "^4.7.1",
+    "zlib": "^1.0.5"
+  }
+}
